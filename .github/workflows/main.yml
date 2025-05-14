@@ -1,12 +1,12 @@
 
-name: TAKWID
+name: TOOLBOXLAP
 
 on:
   workflow_dispatch:
 
 jobs:
   setup-rdp-tunnel:
-    runs-on: windows-2025
+    runs-on: windows-latest
 
     steps:
     - name: Check out the repository
@@ -22,9 +22,9 @@ jobs:
       run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
     - run: Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
     - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-    - run: Set-LocalUser -Name "admin" -Password (ConvertTo-SecureString -AsPlainText "admin@123" -Force)
+    - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "admin@123" -Force)
 
-    - name: TAKWID.SY
+    - name: www.takiwd.sy
       env:
         PLAYIT_AUTH_KEY: ${{ secrets.PL }} 
       run: |
